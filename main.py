@@ -1,8 +1,8 @@
 import requests
 from time import time, sleep
 import datetime
-import asyncio
-import collections
+# import asyncio
+# import collections
 
 token = "411994147:AAH731qEte9GlKpImQzYlfzY3Gc_ijjam38"
 
