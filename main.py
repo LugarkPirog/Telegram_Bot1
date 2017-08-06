@@ -29,7 +29,7 @@ class Bot:
         chat_id = upd['message']['chat']['id']
         return chat_id
 
-    async def send_msg(self, chat, text):
+    def send_msg(self, chat, text):
         params = {"chat_id": chat, "text": text}
         query = self.url + "sendMessage"
         response = requests.post(query, data=params)
@@ -37,6 +37,7 @@ class Bot:
 
 bot = Bot(token)
 now = datetime.datetime.now()
+
 
 def tick(delay, count):
     for i in range(count):
@@ -47,14 +48,16 @@ def tick(delay, count):
 
 def main():
     new_offset = None
-    while True:
-        t = 0 # [q for q in enumerate(range(5)) if q[1] % 2]
+    i = 5
+    while i > 0:
+        t = i**2  # [q for q in enumerate(range(5)) if q[1] % 2]
         updates = bot.get_updates_json(new_offset)
         last_upd = bot.get_last_upd(updates)
         chat_id = bot.get_chat_id(last_upd)
         bot.send_msg(chat_id, t)
-        for i in tick(1, 10):
-            print(i)
+        # for i in tick(1, 10):
+        #     print(i)
+        i -= 1
         sleep(5)
 # chatId = getChatId(getLastUpd(getUpdatesJson()))
 # print(chatId)
