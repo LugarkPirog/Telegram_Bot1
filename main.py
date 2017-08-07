@@ -48,18 +48,21 @@ def tick(delay, count):
 
 def main():
     new_offset = None
-    i = 1
+    i = 0
     while True:
         updates = bot.get_updates_json(new_offset)
         last_upd = bot.get_last_upd(updates)
         chat_id = bot.get_chat_id(last_upd)
         txt = last_upd['message']['text']
-        if txt.isdigit():
+        if i > 0:
+            t = i ** 2
+            bot.send_msg(chat_id, t)
+            i -= 1
+        elif txt.isdigit():
             i = int(txt)
-            if i > 0:
-                t = i ** 2
-                bot.send_msg(chat_id, t)
-                i -= 1
+            t = i ** 2
+            bot.send_msg(chat_id, t)
+            i -= 1
         sleep(5)
 if __name__ == "__main__":
     try:
