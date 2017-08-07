@@ -49,19 +49,18 @@ def tick(delay, count):
 def main():
     new_offset = None
     i = 5
-    while i > 0:
+    while True:
         t = i**2  # [q for q in enumerate(range(5)) if q[1] % 2]
         updates = bot.get_updates_json(new_offset)
         last_upd = bot.get_last_upd(updates)
         chat_id = bot.get_chat_id(last_upd)
-        bot.send_msg(chat_id, t)
-        # for i in tick(1, 10):
-        #     print(i)
-        i -= 1
+        txt = last_upd['message']['text']
+        if txt.isdigit():
+            i = int(txt)
+        if i > 0:
+            bot.send_msg(chat_id, t)
+            i -= 1
         sleep(5)
-# chatId = getChatId(getLastUpd(getUpdatesJson()))
-# print(chatId)
-# response = sendMsg(chatId, "Test message. Hope it will work")
 if __name__ == "__main__":
     try:
         main()
