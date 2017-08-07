@@ -38,12 +38,11 @@ class Bot:
 bot = Bot(token)
 now = datetime.datetime.now()
 
-
-def tick(delay, count):
-    for i in range(count):
-        print("dsd")
-        yield i
-        # await asyncio.sleep(delay)
+#
+# def tick(delay, count):
+#     for i in range(count):
+#         print("dsd")
+#         yield i
 
 
 def main():
